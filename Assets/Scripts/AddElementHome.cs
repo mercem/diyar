@@ -21,14 +21,7 @@ public class AddElementHome : MonoBehaviour
     
 
     public void getAllElements(){
-        int childCount = listObject.transform.childCount;
-        if(childCount != 0)
-        {
-            for (int i = 0; i < childCount; i++)
-            {
-                Destroy(listObject.transform.GetChild(i).gameObject);
-            }
-        };
+        ClearList();
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(DatabaseConnection.databaseURL);
         reference = FirebaseDatabase.DefaultInstance.RootReference.Child(ChildDb);
         reference.GetValueAsync().ContinueWith(task => {
@@ -45,14 +38,7 @@ public class AddElementHome : MonoBehaviour
     }
 
     public void getElementsByCategory(String category){
-        int childCount = listObject.transform.childCount;
-        if (childCount != 0)
-        {
-            for (int i = 0; i < childCount; i++)
-            {
-                Destroy(listObject.transform.GetChild(i).gameObject);
-            }
-        };
+        ClearList();
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(DatabaseConnection.databaseURL);
         reference = FirebaseDatabase.DefaultInstance.RootReference.Child(ChildDb);
         reference.OrderByChild("category").StartAt(category).EndAt(category).GetValueAsync().ContinueWith(task => {
@@ -113,4 +99,17 @@ public class AddElementHome : MonoBehaviour
         bundle.Unload(false);
         www.Dispose();
     }
+
+    void ClearList()
+    {
+        int childCount = listObject.transform.childCount;
+        if (childCount != 0)
+        {
+            for (int i = 0; i < childCount; i++)
+            {
+                Destroy(listObject.transform.GetChild(i).gameObject);
+            }
+        };
+    }
+     
 }
