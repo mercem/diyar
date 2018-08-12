@@ -9,19 +9,26 @@ using System;
 
 public class AddElementHome : MonoBehaviour
 {
-
     public GameObject element;
     public GameObject downloader;
     public GameObject modelPanel;
+    public GameObject listObject;
     public string sprite_bundle_url;
     public string assetName;
     GameObject[] sprites;
     public string ChildDb;
     DatabaseReference reference;
+    
 
-
-	// Use this for initialization
-	void Start () {
+    public void getAllElements(){
+        int childCount = listObject.transform.childCount;
+        if(childCount != 0)
+        {
+            for (int i = 0; i < childCount; i++)
+            {
+                Destroy(listObject.transform.GetChild(i).gameObject);
+            }
+        };
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(DatabaseConnection.databaseURL);
         reference = FirebaseDatabase.DefaultInstance.RootReference.Child(ChildDb);
         reference.GetValueAsync().ContinueWith(task => {
@@ -31,19 +38,23 @@ public class AddElementHome : MonoBehaviour
             }
             else if (task.IsCompleted)
             {
-                Debug.Log("ok");
                 DataSnapshot dataSnapshot = task.Result;
-
-                StartCoroutine(LoadSpriteAddElement(dataSnapshot,sprite_bundle_url));
+                StartCoroutine(LoadSpriteAddElement(dataSnapshot, sprite_bundle_url));
             }
         });
     }
 
-    public void getAllElements(){
-        Start();
-    }
-
     public void getElementsByCategory(String category){
+        int childCount = listObject.transform.childCount;
+        if (childCount != 0)
+        {
+            for (int i = 0; i < childCount; i++)
+            {
+                Destroy(listObject.transform.GetChild(i).gameObject);
+            }
+        };
+        FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(DatabaseConnection.databaseURL);
+        reference = FirebaseDatabase.DefaultInstance.RootReference.Child(ChildDb);
         reference.OrderByChild("category").StartAt(category).EndAt(category).GetValueAsync().ContinueWith(task => {
             if (task.IsFaulted)
             {
@@ -51,9 +62,7 @@ public class AddElementHome : MonoBehaviour
             }
             else if (task.IsCompleted)
             {
-                Debug.Log("ok");
                 DataSnapshot dataSnapshot = task.Result;
-
                 StartCoroutine(LoadSpriteAddElement(dataSnapshot, sprite_bundle_url));
             }
         });
@@ -84,9 +93,9 @@ public class AddElementHome : MonoBehaviour
             yield return bundleRequest;
             item.transform.Find("Image").GetComponent<Image>().sprite = bundleRequest.asset as Sprite;
             item.transform.Find("Title").GetComponent<Text>().text = dS.Child("name").Value as String;
-            item.GetComponent<Button>().onClick.AddListener(() => downloader.GetComponent<AssetDownloader>().Load(dS.Child("hq_prefab_link").Value as String));
+            item.GetComponent<Button>().onClick.AddListener(() => downloader.GetComponent<AssetDownloader>().Load(dS.Child("lq_prefab_link").Value as String, dS.Child("hq_prefab_link").Value as String));
             item.GetComponent<Button>().onClick.AddListener(() => modelPanel.GetComponent<Button>().interactable = true);
-            item.transform.SetParent(GetComponent<GridLayoutGroup>().transform);
+            item.transform.SetParent(listObject.GetComponent<GridLayoutGroup>().transform,false);
             item.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
 

@@ -20,7 +20,6 @@ public class AddElementCategory : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(DatabaseConnection.databaseURL);
         DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference.Child(ChildDb);
         reference.GetValueAsync().ContinueWith(task => {
@@ -30,20 +29,10 @@ public class AddElementCategory : MonoBehaviour
             }
             else if (task.IsCompleted)
             {
-                Debug.Log("ok");
                 DataSnapshot dataSnapshot = task.Result;
-
                 StartCoroutine(LoadSpriteAddElement(dataSnapshot, sprite_bundle_url));
-
-
             }
         });
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     IEnumerator LoadSpriteAddElement(DataSnapshot dataSnapshot, string url)
@@ -71,7 +60,7 @@ public class AddElementCategory : MonoBehaviour
             item.transform.Find("Image").GetComponent<Image>().sprite = bundleRequest.asset as Sprite;
             item.transform.Find("Title").GetComponent<Text>().text = dS.Child("name").Value as String;
             item.GetComponent<Button>().onClick.AddListener(() => addElementHome.GetComponent<AddElementHome>().getElementsByCategory(dS.Child("category").Value as String));
-            item.transform.SetParent(GetComponent<GridLayoutGroup>().transform);
+            item.transform.SetParent(GetComponent<GridLayoutGroup>().transform,false);
             item.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
 

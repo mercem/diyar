@@ -10,7 +10,7 @@ public class AssetDownloader : MonoBehaviour
 	GameObject model;
     public Animator loadingPanel;
 	public Transform spawnPos;
-    public static string vuforiaModelUrl;
+    public static string forwardedModelUrl;
     private string assetName = "modele";
     public DatabaseConnection databaseConnection;
     
@@ -43,7 +43,7 @@ public class AssetDownloader : MonoBehaviour
         www.Dispose();
 	}
 
-	public void Load(string url)
+	public void Load(string forwardedModelUrl, string downloadedUrl)
 	{
 
         //FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://projem02.firebaseio.com/");
@@ -66,11 +66,11 @@ public class AssetDownloader : MonoBehaviour
         }
 
 
-        vuforiaModelUrl = url;
+        AssetDownloader.forwardedModelUrl = forwardedModelUrl;
 
        
         loadingPanel.Play("Panel Open");
-        StartCoroutine(LoadBundle(url));		
+        StartCoroutine(LoadBundle(downloadedUrl));		
 	}
 
 
