@@ -1,0 +1,37 @@
+{
+  "client": [
+    {
+      "services": {
+        "appinvite_service": {
+          "status": 0
+        }, 
+        "analytics_service": {
+          "status": 0
+        }
+      }, 
+      "oauth_client": [
+        {
+          "client_id": "501958501083-j10lmj92ntq5opcvji2jqo9sgnagb37u.apps.googleusercontent.com"
+        }
+      ], 
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQCpq9Oor5KQDkVVVEIVYpL6WMswm0NVM"
+        }
+      ], 
+      "client_info": {
+        "mobilesdk_app_id": "1:501958501083:ios:a8d0fdca1c06472e", 
+        "android_client_info": {
+          "package_name": "com.artrio.diyar"
+        }
+      }
+    }
+  ], 
+  "configuration_version": "1", 
+  "project_info": {
+    "storage_bucket": "projem02.appspot.com", 
+    "project_id": "projem02", 
+    "firebase_url": "https://projem02.firebaseio.com", 
+    "project_number": "501958501083"
+  }
+}
