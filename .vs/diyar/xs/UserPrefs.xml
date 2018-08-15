@@ -1,0 +1,16 @@
+﻿<Properties StartupConfiguration="{01A98F94-2429-7FE9-52F5-B7CC2DC63BF9}|">
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ScrollbarSizeArranger.cs">
+    <Files>
+      <File FileName="Assets/Scripts/AddElementHome.cs" Line="41" Column="11" />
+      <File FileName="Assets/Scripts/AssetDownloader.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ScrollbarSizeArranger.cs" Line="6" Column="28" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
