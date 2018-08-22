@@ -38,7 +38,7 @@ public class AddElementHome : MonoBehaviour
     }
 
     public void getElementsByCategory(String category){
-        ClearList();
+        //ClearList();
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(DatabaseConnection.databaseURL);
         reference = FirebaseDatabase.DefaultInstance.RootReference.Child(ChildDb);
         reference.OrderByChild("category").StartAt(category).EndAt(category).GetValueAsync().ContinueWith(task => {
