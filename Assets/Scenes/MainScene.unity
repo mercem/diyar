@@ -1411,7 +1411,7 @@ RectTransform:
   m_Father: {fileID: 1655205154}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.4786616, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -3640,8 +3640,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 166040971}
   m_HandleRect: {fileID: 166040969}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 0.5213384
+  m_Value: 0
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7717,7 +7717,6 @@ GameObject:
   - component: {fileID: 1606734875}
   - component: {fileID: 1606734878}
   - component: {fileID: 1606734879}
-  - component: {fileID: 1606734880}
   m_Layer: 5
   m_Name: List
   m_TagString: Untagged
@@ -7740,7 +7739,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 290.63, y: -0.000061035156}
+  m_AnchoredPosition: {x: 290.63, y: -0.00000070039164}
   m_SizeDelta: {x: 582.2, y: 25}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1606734875
@@ -7825,18 +7824,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
---- !u!114 &1606734880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1606734873}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 722b016257cda4e0bb014dc04cb4017e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scrollbar: {fileID: 535554280}
 --- !u!1 &1606961586
 GameObject:
   m_ObjectHideFlags: 0
