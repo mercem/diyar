@@ -5,25 +5,24 @@ using UnityEngine.UI;
 using Firebase;
 using Firebase.Unity.Editor;
 using Firebase.Database;
-using System;
+
 
 public class AddElementHome : MonoBehaviour
 {
     public GameObject element;
     public GameObject downloader;
     public GameObject modelPanel;
-    public GameObject listObject;
-    public string sprite_bundle_url;
+    public GameObject list;
+    public string spriteBundleURL;
     public string assetName;
     GameObject[] sprites;
-    public string ChildDb;
     DatabaseReference reference;
     
 
-    public void getAllElements(){
+    public void AddAllElements(){
         ClearList();
-        FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(DatabaseConnection.databaseURL);
-        reference = FirebaseDatabase.DefaultInstance.RootReference.Child(ChildDb);
+        FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(DatabaseConnection.getDatabaseURL());
+        reference = FirebaseDatabase.DefaultInstance.RootReference.Child("elements");
         reference.GetValueAsync().ContinueWith(task => {
             if (task.IsFaulted)
             {
@@ -32,15 +31,15 @@ public class AddElementHome : MonoBehaviour
             else if (task.IsCompleted)
             {
                 DataSnapshot dataSnapshot = task.Result;
-                StartCoroutine(LoadSpriteAddElement(dataSnapshot, sprite_bundle_url));
+                StartCoroutine(LoadSpriteAddElements(dataSnapshot));
             }
         });
     }
 
-    public void getElementsByCategory(String category){
-        //ClearList();
-        FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(DatabaseConnection.databaseURL);
-        reference = FirebaseDatabase.DefaultInstance.RootReference.Child(ChildDb);
+    public void AddElementsByCategory(string category){
+        ClearList();
+        FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(DatabaseConnection.getDatabaseURL());
+        reference = FirebaseDatabase.DefaultInstance.RootReference.Child("elements");
         reference.OrderByChild("category").StartAt(category).EndAt(category).GetValueAsync().ContinueWith(task => {
             if (task.IsFaulted)
             {
@@ -49,14 +48,20 @@ public class AddElementHome : MonoBehaviour
             else if (task.IsCompleted)
             {
                 DataSnapshot dataSnapshot = task.Result;
-                StartCoroutine(LoadSpriteAddElement(dataSnapshot, sprite_bundle_url));
+                StartCoroutine(LoadSpriteAddElements(dataSnapshot));
             }
         });
-    } 
+    }
+    
+    public void AddElement(DataSnapshot dataSnapshot)
+    {
+        ClearList();
+        StartCoroutine(LoadSpriteAddElements(dataSnapshot));
+    }
 
 
 
-    IEnumerator LoadSpriteAddElement(DataSnapshot dataSnapshot,string url)
+    IEnumerator LoadSpriteAddElements(DataSnapshot dataSnapshot)
     {
         while (!Caching.ready)
         {
@@ -64,7 +69,7 @@ public class AddElementHome : MonoBehaviour
         }
 
         //Begin download
-        WWW www = WWW.LoadFromCacheOrDownload(url, 0);
+        WWW www = WWW.LoadFromCacheOrDownload(spriteBundleURL, 0);
         yield return www;
 
         //Load the downloaded bundle
@@ -78,10 +83,10 @@ public class AddElementHome : MonoBehaviour
             AssetBundleRequest bundleRequest = bundle.LoadAssetAsync(dS.Key,typeof(Sprite));
             yield return bundleRequest;
             item.transform.Find("Image").GetComponent<Image>().sprite = bundleRequest.asset as Sprite;
-            item.transform.Find("Title").GetComponent<Text>().text = dS.Child("name").Value as String;
-            item.GetComponent<Button>().onClick.AddListener(() => downloader.GetComponent<AssetDownloader>().Load(dS.Child("lq_prefab_link").Value as String, dS.Child("hq_prefab_link").Value as String));
+            item.transform.Find("Title").GetComponent<Text>().text = dS.Child("name").Value as string;
+            item.GetComponent<Button>().onClick.AddListener(() => downloader.GetComponent<AssetDownloader>().Load(dS.Child("lqPrefabLink").Value as string, dS.Child("hqPrefabLink").Value as string));
             item.GetComponent<Button>().onClick.AddListener(() => modelPanel.GetComponent<Button>().interactable = true);
-            item.transform.SetParent(listObject.GetComponent<GridLayoutGroup>().transform,false);
+            item.transform.SetParent(list.GetComponent<GridLayoutGroup>().transform,false);
             item.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
 
@@ -102,14 +107,15 @@ public class AddElementHome : MonoBehaviour
 
     void ClearList()
     {
-        int childCount = listObject.transform.childCount;
+        int childCount = list.transform.childCount;
         if (childCount != 0)
         {
             for (int i = 0; i < childCount; i++)
             {
-                Destroy(listObject.transform.GetChild(i).gameObject);
+                Destroy(list.transform.GetChild(i).gameObject);
             }
         };
     }
      
+
 }

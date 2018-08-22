@@ -7,7 +7,7 @@ public class HomePanelInit : MonoBehaviour {
     public GameObject addElementHome;
 
 	void Start () {
-        addElementHome.GetComponent<AddElementHome>().getAllElements();
+        addElementHome.GetComponent<AddElementHome>().AddAllElements();
 	}
 	
 

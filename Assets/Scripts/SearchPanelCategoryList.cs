@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class MainSceneOpener : MonoBehaviour {
+public class SearchPanelCategoryList : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -14,9 +13,4 @@ public class MainSceneOpener : MonoBehaviour {
 	void Update () {
 		
 	}
-
-
-    public void OpenScene(){
-        SceneManager.LoadScene("MainScene");
-    }
 }

@@ -4,15 +4,13 @@ using UnityEngine;
 using Firebase;
 using Firebase.Unity.Editor;
 using Firebase.Database;
-using System.Threading;
-using System.Threading.Tasks;
 
 public class DatabaseConnection : MonoBehaviour {
 
     private DatabaseReference reference;
     private DataSnapshot dataSnapshot;
     private bool wait = true;
-    public static string databaseURL = "https://projem02.firebaseio.com";
+    private static string databaseURL = "https://projem02.firebaseio.com";
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +23,10 @@ public class DatabaseConnection : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public static string getDatabaseURL() {
+        return databaseURL;
+    }
 
     //  ***** bu ikisi beraber olan hali ****
     //public DataSnapshot getAllElements(){

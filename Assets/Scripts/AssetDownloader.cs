@@ -12,7 +12,6 @@ public class AssetDownloader : MonoBehaviour
 	public Transform spawnPos;
     public static string forwardedModelUrl;
     private string assetName = "modele";
-    public DatabaseConnection databaseConnection;
     
 	IEnumerator LoadBundle(string url) 
 	{
@@ -69,7 +68,7 @@ public class AssetDownloader : MonoBehaviour
         AssetDownloader.forwardedModelUrl = forwardedModelUrl;
 
        
-        loadingPanel.Play("Panel Open");
+        //loadingPanel.Play("Panel Open");
         StartCoroutine(LoadBundle(downloadedUrl));		
 	}
 

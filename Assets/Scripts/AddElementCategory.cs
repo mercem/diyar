@@ -1,11 +1,10 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Firebase;
 using Firebase.Unity.Editor;
 using Firebase.Database;
-using System;
+
 
 public class AddElementCategory : MonoBehaviour
 {
@@ -20,7 +19,7 @@ public class AddElementCategory : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(DatabaseConnection.databaseURL);
+        FirebaseApp.DefaultInstance.SetEditorDatabaseUrl(DatabaseConnection.getDatabaseURL());
         DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference.Child(ChildDb);
         reference.GetValueAsync().ContinueWith(task => {
             if (task.IsFaulted)
@@ -58,8 +57,8 @@ public class AddElementCategory : MonoBehaviour
             yield return bundleRequest;
 
             item.transform.Find("Image").GetComponent<Image>().sprite = bundleRequest.asset as Sprite;
-            item.transform.Find("Title").GetComponent<Text>().text = dS.Child("name").Value as String;
-            item.GetComponent<Button>().onClick.AddListener(() => addElementHome.GetComponent<AddElementHome>().getElementsByCategory(dS.Child("category").Value as String));
+            item.transform.Find("Title").GetComponent<Text>().text = dS.Child("name").Value as string;
+            item.GetComponent<Button>().onClick.AddListener(() => addElementHome.GetComponent<AddElementHome>().AddElementsByCategory(dS.Child("category").Value as string));
             item.transform.SetParent(GetComponent<GridLayoutGroup>().transform,false);
             item.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }

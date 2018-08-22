@@ -1,13 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class MainSceneOpener : MonoBehaviour {
+public class AAA : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        Debug.Log(transform.childCount);
 	}
 	
 	// Update is called once per frame
@@ -15,8 +14,9 @@ public class MainSceneOpener : MonoBehaviour {
 		
 	}
 
-
-    public void OpenScene(){
-        SceneManager.LoadScene("MainScene");
+    public void TextLogger(string txt)
+    {
+        Debug.Log(txt);
     }
+
 }
