@@ -5757,8 +5757,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1606734874}
   - {fileID: 1311229912}
+<<<<<<< HEAD
+=======
+  - {fileID: 1606734874}
+>>>>>>> parent of 32b248b... Home'daki vertical scrollun element sayisindan bagimsizca kaydirilabilmesi saglandi
   m_Father: {fileID: 1870491240}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6086,7 +6089,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1188228036}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -7396,11 +7399,15 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1188228036}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
+<<<<<<< HEAD
   m_AnchoredPosition: {x: 609.1, y: -250.00117}
+=======
+  m_AnchoredPosition: {x: 609.1, y: -137.50003}
+>>>>>>> parent of 32b248b... Home'daki vertical scrollun element sayisindan bagimsizca kaydirilabilmesi saglandi
   m_SizeDelta: {x: 1219, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1606734875
